@@ -15,7 +15,13 @@ class TowerGameWindow(arcade.Window):
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         self.box.draw()
         
+    def update(self, delta):
+        box = self.box
+ 
+        if box.center_x > SCREEN_WIDTH:
+            box.center_x = 0
 
+        self.box.set_position(self.box.center_x+8, self.box.center_y)
         
  
 if __name__ == '__main__':
