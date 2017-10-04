@@ -15,7 +15,14 @@ class TowerGameWindow(arcade.Window):
         arcade.start_render()
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         self.box.draw()
+
+    def on_key_press(self, key, modifiers):
+        box = self.box
         
+        if key == arcade.key.SPACE:
+            self.vx = 0
+            self.box.set_position(self.box.center_x+self.vx, 350)
+
     def update(self, delta):
         box = self.box
 
