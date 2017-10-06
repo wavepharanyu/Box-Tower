@@ -4,14 +4,17 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
 vx = 10
 vx1 = 10
+i = 0
 class TowerGameWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
         self.background = arcade.load_texture('images/town.jpg')
         self.box = arcade.Sprite('images/box.png')
-        self.box1 = arcade.Sprite('images/box.png')
         self.box.set_position(500, 150)
-        self.box1.set_position(500, 400)
+        self.i = i
+        self.box1_list = arcade.SpriteList()
+        self.box1 = arcade.Sprite("images/box.png")
+        self.box1_list.append(self.box1)
         self.vx = vx
         self.vx1 = vx1
         self.score = 0
@@ -23,18 +26,21 @@ class TowerGameWindow(arcade.Window):
             self.box.set_position(self.box.center_x+self.vx, self.box.center_y)
             self.status = 1
             self.score += 10
+            self.i += 1
+            self.box1.set_position(500, 150+(250*self.i))
 
     def on_draw(self):
         arcade.start_render()
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         self.box.draw()
         if(self.status == 1):
-            self.box1.draw()
+            self.box1_list.draw()
         arcade.draw_text(str("Score: ")+str(self.score),self.width - 150, self.height - 25,arcade.color.BLACK, 20)
- 
+
+
     def update(self, delta):
         box = self.box
-        box1 = self.box1
+
         if box.center_x > SCREEN_WIDTH:
             self.vx *= -1
         
@@ -42,13 +48,14 @@ class TowerGameWindow(arcade.Window):
             self.vx *= -1
         self.box.set_position(self.box.center_x+self.vx, self.box.center_y)
 
-        if box1.center_x > SCREEN_WIDTH:
+        if self.box1.center_x > SCREEN_WIDTH:
             self.vx1 *= -1
         
-        if box1.center_x < 0:
+        if self.box1.center_x < 0:
             self.vx1 *= -1
         self.box1.set_position(self.box1.center_x+self.vx1, self.box1.center_y)
 
+        
  
 if __name__ == '__main__':
     window = TowerGameWindow(SCREEN_WIDTH, SCREEN_HEIGHT)
