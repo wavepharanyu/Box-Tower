@@ -20,7 +20,7 @@ class TowerGameWindow(arcade.Window):
         box = self.box
         if key == arcade.key.SPACE:
             self.vx = 0
-            self.box.set_position(self.box.center_x+self.vx, 350)
+            self.box.set_position(self.box.center_x+self.vx, 0)
             self.status = 1
             self.score += 10
 
