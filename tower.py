@@ -10,8 +10,8 @@ class TowerGameWindow(arcade.Window):
         self.background = arcade.load_texture('images/town.jpg')
         self.box = arcade.Sprite('images/box.png')
         self.box1 = arcade.Sprite('images/box.png')
-        self.box.set_position(500, 350)
-        self.box1.set_position(500, 600)
+        self.box.set_position(500, 0)
+        self.box1.set_position(500, 250)
         self.vx = vx
         self.vx1 = vx1
         self.score = 0
