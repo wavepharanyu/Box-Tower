@@ -10,8 +10,8 @@ class TowerGameWindow(arcade.Window):
         self.background = arcade.load_texture('images/town.jpg')
         self.box = arcade.Sprite('images/box.png')
         self.box1 = arcade.Sprite('images/box.png')
-        self.box.set_position(500, 0)
-        self.box1.set_position(500, 250)
+        self.box.set_position(500, 150)
+        self.box1.set_position(500, 400)
         self.vx = vx
         self.vx1 = vx1
         self.score = 0
@@ -20,7 +20,7 @@ class TowerGameWindow(arcade.Window):
         box = self.box
         if key == arcade.key.SPACE:
             self.vx = 0
-            self.box.set_position(self.box.center_x+self.vx, 0)
+            self.box.set_position(self.box.center_x+self.vx, self.box.center_y)
             self.status = 1
             self.score += 10
 
