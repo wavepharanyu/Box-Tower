@@ -82,17 +82,14 @@ class MyAppWindow(arcade.Window):
         self.player_sprite.set_position(self.player_sprite.center_x+self.speed, self.player_sprite.center_y)
  
         for bullet in self.bullet_list:
-            hit_list = arcade.check_for_collision_with_list(bullet,self.bullet_hit_list)
-            if self.count == 0:
-                self.bullet_hit_list.append(bullet)
-            self.count += 1 
-            for bullet2 in hit_list:
-                if len(hit_list) > 0:
+            hit_list = arcade.geometry.check_for_collision_with_list(bullet,self.bullet_hit_list)
+            self.bullet_hit_list.append(bullet)
+            for bullet2 in self.bullet_hit_list:
                     bullet.center_y += 0
                     self.bullet_hit_list.remove(bullet2)
                     self.bullet_hit_list.append(bullet)
                     self.score = 10
-
+                    len(hit_list) = 0
 
 
 def main():
