@@ -2,7 +2,6 @@ import arcade
 from models import World,Box
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
-SPEED = 10 
 class TowerGameWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height,)
@@ -23,18 +22,18 @@ class TowerGameWindow(arcade.Window):
 
 
     def on_key_press(self, key, modifiers):
-        box = self.box
         if key == arcade.key.SPACE:
-            self.speed = 0
-            self.score += 10
+            self.world.box.speed = 0
+            self.world.box.change_y = -10 
 
    
     def update(self, delta):
         self.world.update(delta)
-        
-
+        if(self.world.box.center_y == 150):
+             self.world.box.change_y = 0
 
 
 if __name__ == '__main__':
     window = TowerGameWindow(SCREEN_WIDTH, SCREEN_HEIGHT)
+    window.setup()
     arcade.run()
