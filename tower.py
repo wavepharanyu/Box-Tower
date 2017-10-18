@@ -1,62 +1,40 @@
 import arcade
- 
+from models import World,Box
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
-vx = 10
-vx1 = 10
-i = 0
+SPEED = 10 
 class TowerGameWindow(arcade.Window):
     def __init__(self, width, height):
-        super().__init__(width, height)
-        self.background = arcade.load_texture('images/town.jpg')
-        self.box = arcade.Sprite('images/box.png')
-        self.box.set_position(500, 150)
-        self.i = i
-        self.box1_list = arcade.SpriteList()
-        self.box1 = arcade.Sprite("images/box.png")
-        self.box1_list.append(self.box1)
-        self.vx = vx
-        self.vx1 = vx1
+        super().__init__(width, height,)
+        self.background = None
+        self.world = World(width,height)
+        box = Box(self.world,SCREEN_WIDTH,SCREEN_HEIGHT)
+        self.speed = None
         self.score = 0
-        self.status = 0
-    def on_key_press(self, key, modifiers):
-        box = self.box
-        if key == arcade.key.SPACE:
-            self.vx = 0
-            self.box.set_position(self.box.center_x+self.vx, self.box.center_y)
-            self.status = 1
-            self.score += 10
-            self.i += 1
-            self.box1.set_position(500, 150+(250*self.i))
+
+    def setup(self):
+        self.background = arcade.load_texture('images/town.jpg')  
 
     def on_draw(self):
         arcade.start_render()
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
-        self.box.draw()
-        if(self.status == 1):
-            self.box1_list.draw()
+        self.world.box.draw()
         arcade.draw_text(str("Score: ")+str(self.score),self.width - 150, self.height - 25,arcade.color.BLACK, 20)
 
 
-    def update(self, delta):
+    def on_key_press(self, key, modifiers):
         box = self.box
+        if key == arcade.key.SPACE:
+            self.speed = 0
+            self.score += 10
 
-        if box.center_x > SCREEN_WIDTH:
-            self.vx *= -1
+   
+    def update(self, delta):
+        self.world.update(delta)
         
-        if box.center_x < 0:
-            self.vx *= -1
-        self.box.set_position(self.box.center_x+self.vx, self.box.center_y)
 
-        if self.box1.center_x > SCREEN_WIDTH:
-            self.vx1 *= -1
-        
-        if self.box1.center_x < 0:
-            self.vx1 *= -1
-        self.box1.set_position(self.box1.center_x+self.vx1, self.box1.center_y)
 
-        
- 
+
 if __name__ == '__main__':
     window = TowerGameWindow(SCREEN_WIDTH, SCREEN_HEIGHT)
     arcade.run()
