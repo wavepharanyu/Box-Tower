@@ -42,7 +42,10 @@ class MyAppWindow(arcade.Window):
         self.stack_count = 0
         self.score_text = None
 
-        self.player_sprite = Box(250, 925)     
+        self.player_sprite = Box(250, 925)
+        self.new_box = None
+        self.moving_all_box_down = False
+        self.moving_down_size = 0    
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
