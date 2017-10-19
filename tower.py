@@ -66,9 +66,9 @@ class MyAppWindow(arcade.Window):
             self.box.top = self.player_sprite.bottom
             self.all_sprites_list.append(self.box)
             self.box_list.append(self.box)
-
-    def update(self, delta_time):
-        self.all_sprites_list.update()
+    
+    def update_player(self):
+        self.player_sprite.update()
 
         if self.player_sprite.center_x > SCREEN_WIDTH:
             self.speed *= -1
@@ -78,7 +78,10 @@ class MyAppWindow(arcade.Window):
         
         self.player_sprite.set_position(self.player_sprite.center_x+self.speed, self.player_sprite.center_y)
  
-        
+
+    def update(self, delta_time):
+        self.update_player()
+        self.all_sprites_list.update()
                
 def main():
     MyAppWindow()
