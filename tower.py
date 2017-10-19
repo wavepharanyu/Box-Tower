@@ -88,42 +88,7 @@ class MyAppWindow(arcade.Window):
         
         self.player_sprite.set_position(self.player_sprite.center_x+self.speed, self.player_sprite.center_y)
  
-        for box in self.box_list:
-            if(self.count == 0):
-                if(box.center_y < 65):
-                    box.change = 0
-                    self.point_x1 = box.center_x +55
-                    self.point_x2 = box.center_x -55
-                    self.point_y1 = box.center_y +130
-                    self.box_hit_list.append(box)
-                    self.box_list.remove(box)
-                    self.count += 1
-                else:
-                    box.center_y -= BOX_SPEED
-
-            elif self.count > 4:
-                    for boxx in self.box_hit_list:
-                        self.box_hit_list.remove(boxx)
-                        break
-                    for boxxx in self.box_hit_list:
-                        boxxx.center_y -= 130
-                    self.point_y1 -= 130
-                    self.count = 4
-
-            else:
-                box.center_y -= BOX_SPEED
-                if(box.center_x >= self.point_x2 and box.center_x <= self.point_x1 and box.center_y <= self.point_y1):   
-                #if box.top < 130+(self.count*130):
-                    box.change_y = 0
-                    self.point_x1 = box.center_x +55
-                    self.point_x2 = box.center_x -55
-                    self.point_y1 = box.center_y +130
-                    self.box_hit_list.append(box)
-                    self.box_list.remove(box)
-                    self.count += 1
-                    self.score += 10
-                else:
-                    self.count += 0
+        
                
 def main():
     MyAppWindow()
