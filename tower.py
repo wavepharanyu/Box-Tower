@@ -64,11 +64,11 @@ class MyAppWindow(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.SPACE:
-            self.box = arcade.Sprite("images/box.png", SPRITE_SCALING/2)
-            self.box.center_x = self.player_sprite.center_x
-            self.box.top = self.player_sprite.bottom
-            self.all_sprites_list.append(self.box)
-            self.box_list.append(self.box)
+            if not self.new_box is None:
+                return
+            self.new_box = Box(self.player_sprite.center_x, self.player_sprite.center_y)
+            self.new_box.change_y = -BOX_SPEED
+            self.all_sprites_list.append(self.new_box)
     
     def update_player(self):
         self.player_sprite.update()
