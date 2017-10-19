@@ -39,19 +39,16 @@ class MyAppWindow(arcade.Window):
 
         # Set up the player
         self.score = 0
-        self.count = 0
-        self.check = True
+        self.stack_count = 0
         self.score_text = None
+
+        self.player_sprite = Box(250, 925)
         self.point_x1 = 0
         self.point_x2 = 0
         self.point_y1 = 0
         self.point_y2 = 0
         self.player_sprite = arcade.Sprite("images/box.png", SPRITE_SCALING/2)
         
-        self.player_sprite.center_x = 250
-        self.player_sprite.center_y = 925
-        self.all_sprites_list.append(self.player_sprite)
-
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
