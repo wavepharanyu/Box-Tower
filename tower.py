@@ -18,7 +18,7 @@ class Box(arcade.Sprite):
         self.center_y = y
         self.is_kill = False
 
-     def update(self):
+    def update(self):
         super().update()
 
         if self.center_y < -self.half_width:
@@ -42,19 +42,15 @@ class MyAppWindow(arcade.Window):
         self.stack_count = 0
         self.score_text = None
 
-        self.player_sprite = Box(250, 925)
-       
-        self.player_sprite = arcade.Sprite("images/box.png", SPRITE_SCALING/2)
-        
+        self.player_sprite = Box(250, 925)     
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
 
         arcade.start_render()
 
-        self.box_list.draw()
-        self.box_hit_list.draw()
         self.player_sprite.draw()
+        self.all_sprites_list.draw()
 
         output = f"Score: {self.score}"
 
@@ -72,7 +68,6 @@ class MyAppWindow(arcade.Window):
             self.box_list.append(self.box)
 
     def update(self, delta_time):
-
         self.all_sprites_list.update()
 
         if self.player_sprite.center_x > SCREEN_WIDTH:
