@@ -43,10 +43,7 @@ class MyAppWindow(arcade.Window):
         self.score_text = None
 
         self.player_sprite = Box(250, 925)
-        self.point_x1 = 0
-        self.point_x2 = 0
-        self.point_y1 = 0
-        self.point_y2 = 0
+       
         self.player_sprite = arcade.Sprite("images/box.png", SPRITE_SCALING/2)
         
         arcade.set_background_color(arcade.color.BLACK)
@@ -76,8 +73,6 @@ class MyAppWindow(arcade.Window):
 
     def update(self, delta_time):
 
-        self.box_list.update()
-        self.box_hit_list.update()
         self.all_sprites_list.update()
 
         if self.player_sprite.center_x > SCREEN_WIDTH:
