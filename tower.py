@@ -17,20 +17,25 @@ class Box(arcade.Sprite):
         self.center_x = x
         self.center_y = y
         self.is_kill = False
+
+     def update(self):
+        super().update()
+
+        if self.center_y < -self.half_width:
+            #print("KILL")
+            self.is_kill = True
+            self.kill()
        
 class MyAppWindow(arcade.Window):
     """ Main application class. """
 
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Sprites and Bullets Demo")
-
-        """ Set up the game and initialize the variables. """
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Box Tower")
 
         # Sprite lists
         self.speed = SPEED
         self.all_sprites_list = arcade.SpriteList()
         self.box_list = arcade.SpriteList()
-        self.box_hit_list = arcade.SpriteList()
 
         # Set up the player
         self.score = 0
