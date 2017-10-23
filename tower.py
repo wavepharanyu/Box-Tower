@@ -97,6 +97,8 @@ class MyAppWindow(arcade.Window):
                     if abs(self.new_box.center_x - top_box.center_x) <= self.new_box.width * (2 / 3):
                         self.new_box.change_y = 0
 
+                        self.stack_count += 1
+                        self.box_list.append(self.new_box)
                
 def main():
     MyAppWindow()
