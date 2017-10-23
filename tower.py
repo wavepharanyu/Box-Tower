@@ -99,6 +99,8 @@ class MyAppWindow(arcade.Window):
 
                         self.stack_count += 1
                         self.box_list.append(self.new_box)
+
+                    if self.stack_count > 4: ### STACKING SIZE LIMIT
                
 def main():
     MyAppWindow()
