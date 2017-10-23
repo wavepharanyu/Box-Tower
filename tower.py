@@ -90,9 +90,10 @@ class MyAppWindow(arcade.Window):
             if self.new_box.is_kill: ## GAME OVER CHECKING
                 self.new_box = None
                 return
-            
+
             if len(self.box_list) > 0:
                 top_box = self.box_list[-1]
+                if arcade.check_for_collision(self.new_box, top_box):
                
 def main():
     MyAppWindow()
