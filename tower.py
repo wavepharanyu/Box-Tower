@@ -86,6 +86,8 @@ class MyAppWindow(arcade.Window):
         self.update_player()
         self.all_sprites_list.update()
 
+        if self.moving_all_box_down:
+
         if not self.new_box is None:
             if self.new_box.is_kill: ## GAME OVER CHECKING
                 self.new_box = None
@@ -103,6 +105,7 @@ class MyAppWindow(arcade.Window):
                     if self.stack_count > 4: ### STACKING SIZE LIMIT
                         for box in self.box_list:
                             box.change_y = -BOX_SPEED
+                        self.moving_all_box_down = True
                
 def main():
     MyAppWindow()
