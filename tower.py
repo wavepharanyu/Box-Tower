@@ -101,6 +101,8 @@ class MyAppWindow(arcade.Window):
                         self.box_list.append(self.new_box)
 
                     if self.stack_count > 4: ### STACKING SIZE LIMIT
+                        for box in self.box_list:
+                            box.change_y = -BOX_SPEED
                
 def main():
     MyAppWindow()
