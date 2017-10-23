@@ -94,6 +94,9 @@ class MyAppWindow(arcade.Window):
             if len(self.box_list) > 0:
                 top_box = self.box_list[-1]
                 if arcade.check_for_collision(self.new_box, top_box):
+                    if abs(self.new_box.center_x - top_box.center_x) <= self.new_box.width * (2 / 3):
+                        self.new_box.change_y = 0
+
                
 def main():
     MyAppWindow()
