@@ -61,14 +61,6 @@ class MyAppWindow(arcade.Window):
             self.score_text = arcade.create_text(output, arcade.color.WHITE, 14)
         # Render the text
         arcade.render_text(self.score_text, 10, 20)
-
-    def on_key_press(self, key, modifiers):
-        if key == arcade.key.SPACE:
-            if not self.new_box is None:
-                return
-            self.new_box = Box(self.player_sprite.center_x, self.player_sprite.center_y)
-            self.new_box.change_y = -BOX_SPEED
-            self.all_sprites_list.append(self.new_box)
     
     def update_player(self):
         self.player_sprite.update()
@@ -106,6 +98,7 @@ class MyAppWindow(arcade.Window):
 
                         self.stack_count += 1
                         self.box_list.append(self.new_box)
+                        self.score += 10
 
                     if self.stack_count > 4: ### STACKING SIZE LIMIT
                         for box in self.box_list:
@@ -118,6 +111,14 @@ class MyAppWindow(arcade.Window):
             elif self.new_box.center_y - self.new_box.half_height <= 0:
                 self.new_box.change_y = 0
                 self.box_list.append(self.new_box)
+
+    def on_key_press(self, key, modifiers):
+        if key == arcade.key.SPACE:
+            if not self.new_box is None:
+                return
+            self.new_box = Box(self.player_sprite.center_x, self.player_sprite.center_y)
+            self.new_box.change_y = -BOX_SPEED
+            self.all_sprites_list.append(self.new_box)
 
 def main():
     MyAppWindow()
