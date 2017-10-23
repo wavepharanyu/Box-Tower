@@ -85,6 +85,12 @@ class MyAppWindow(arcade.Window):
     def update(self, delta_time):
         self.update_player()
         self.all_sprites_list.update()
+
+        if not self.new_box is None:
+            if self.new_box.is_kill: ## GAME OVER CHECKING
+                self.new_box = None
+                return
+
                
 def main():
     MyAppWindow()
