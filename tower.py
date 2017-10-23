@@ -87,7 +87,11 @@ class MyAppWindow(arcade.Window):
         self.all_sprites_list.update()
 
         if self.moving_all_box_down:
-
+            if self.moving_down_size >= self.player_sprite.height:
+                for box in self.box_list:
+                    box.change_y = 0
+            self.moving_down_size += BOX_SPEED
+            
         if not self.new_box is None:
             if self.new_box.is_kill: ## GAME OVER CHECKING
                 self.new_box = None
