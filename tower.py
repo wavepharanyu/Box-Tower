@@ -112,6 +112,8 @@ class MyAppWindow(arcade.Window):
                             box.change_y = -BOX_SPEED
                         self.moving_all_box_down = True
                         self.moving_down_size = 0
+                        
+                    self.new_box = None
                
 def main():
     MyAppWindow()
