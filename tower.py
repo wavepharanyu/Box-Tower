@@ -54,8 +54,7 @@ class MyAppWindow(arcade.Window):
 
         arcade.set_background_color(arcade.color.BLACK)
 
-    def on_draw(self):
-
+    def draw_game(self):
         arcade.start_render()
 
         self.player_sprite.draw()
@@ -65,7 +64,7 @@ class MyAppWindow(arcade.Window):
 
         if not self.score_text or output != self.score_text.text:
             self.score_text = arcade.create_text(output, arcade.color.WHITE, 14)
-        # Render the text
+            
         arcade.render_text(self.score_text, 10, 20)
     
     def update_player(self):
