@@ -52,7 +52,7 @@ class MyAppWindow(arcade.Window):
 
         self.current_state = GAME_RUNNING
 
-        self.background = arcade.load_texture("images/town3.jpg")
+        self.background = arcade.load_texture("images/town.jpg")
 
 
     def draw_game(self):
