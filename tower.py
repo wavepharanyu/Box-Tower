@@ -52,9 +52,11 @@ class MyAppWindow(arcade.Window):
 
         self.current_state = GAME_RUNNING
 
-        arcade.set_background_color(arcade.color.BLACK)
+        self.background = arcade.load_texture("images/town3.jpg")
+
 
     def draw_game(self):
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         self.player_sprite.draw()
         self.all_sprites_list.draw()
 
@@ -67,10 +69,20 @@ class MyAppWindow(arcade.Window):
     
     def draw_game_over(self):
         output = "Game Over"
-        arcade.draw_text(output, 240, 400, arcade.color.WHITE, 54)
+        arcade.draw_text(output, 100, 700, arcade.color.WHITE, 54)
 
         output = "Score: " + str(self.score)
-        arcade.draw_text(output, 310, 300, arcade.color.WHITE, 24)
+        arcade.draw_text(output, 100, 500, arcade.color.WHITE, 54)
+
+    def on_draw(self):
+        arcade.start_render()
+
+        if self.current_state == GAME_RUNNING:
+            self.draw_game()
+
+        else:
+            self.draw_game_over()
+
 
     def update_player(self):
         self.player_sprite.update()
@@ -97,6 +109,7 @@ class MyAppWindow(arcade.Window):
 
         if not self.new_box is None:
             if self.new_box.is_kill: ## GAME OVER CHECKING
+                self.current_state = GAME_OVER
                 self.new_box = None
                 return
 
