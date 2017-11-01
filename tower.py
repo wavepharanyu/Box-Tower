@@ -49,6 +49,9 @@ class MyAppWindow(arcade.Window):
         self.new_box = None
         self.moving_all_box_down = False
         self.moving_down_size = 0    
+
+        self.current_state = GAME_RUNNING
+
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
