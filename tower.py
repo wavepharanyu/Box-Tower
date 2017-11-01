@@ -63,7 +63,7 @@ class MyAppWindow(arcade.Window):
         output = f"Score: {self.score}"
 
         if not self.score_text or output != self.score_text.text:
-            self.score_text = arcade.create_text(output, arcade.color.WHITE, 14)
+            self.score_text = arcade.create_text(output, arcade.color.BLACK, 24)
             
         arcade.render_text(self.score_text, 10, 20)
     
