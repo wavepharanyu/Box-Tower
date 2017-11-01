@@ -123,13 +123,18 @@ class MyAppWindow(arcade.Window):
                         self.box_list.append(self.new_box)
                         self.score += 10
 
-                    if self.stack_count > 4: ### STACKING SIZE LIMIT
-                        for box in self.box_list:
-                            box.change_y = -BOX_SPEED
-                        self.moving_all_box_down = True
-                        self.moving_down_size = 0
+                        if self.stack_count > 4: ### STACKING SIZE LIMIT
+                            for box in self.box_list:
+                                box.change_y = -BOX_SPEED
+                            self.moving_all_box_down = True
+                            self.moving_down_size = 0
 
-                    self.new_box = None
+                        self.new_box = None
+
+                    else:
+                        if(self.new_box.center_y < -self.player_sprite.half_width):
+                            self.new_box.kill()
+                            self.new_box.is_kill = True
                
             elif self.new_box.center_y - self.new_box.half_height <= 0:
                 self.new_box.change_y = 0
