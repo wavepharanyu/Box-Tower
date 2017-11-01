@@ -9,6 +9,9 @@ SCREEN_HEIGHT = 1000
 BOX_SPEED = 5
 SPEED = 7
 
+GAME_RUNNING = 0
+GAME_OVER = 1
+
 class Box(arcade.Sprite):
     def __init__(self, x, y):
         super().__init__('images/box.png', SPRITE_SCALING / 2)
