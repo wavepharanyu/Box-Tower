@@ -55,8 +55,6 @@ class MyAppWindow(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
 
     def draw_game(self):
-        arcade.start_render()
-
         self.player_sprite.draw()
         self.all_sprites_list.draw()
 
@@ -67,6 +65,13 @@ class MyAppWindow(arcade.Window):
             
         arcade.render_text(self.score_text, 10, 20)
     
+    def draw_game_over(self):
+        output = "Game Over"
+        arcade.draw_text(output, 240, 400, arcade.color.WHITE, 54)
+
+        output = "Score: " + str(self.score)
+        arcade.draw_text(output, 310, 300, arcade.color.WHITE, 24)
+
     def update_player(self):
         self.player_sprite.update()
 
