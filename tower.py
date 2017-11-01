@@ -69,10 +69,10 @@ class MyAppWindow(arcade.Window):
     
     def draw_game_over(self):
         output = "Game Over"
-        arcade.draw_text(output, 100, 700, arcade.color.WHITE, 54)
+        arcade.draw_text(output, 90, 600, arcade.color.WHITE, 54)
 
         output = "Score: " + str(self.score)
-        arcade.draw_text(output, 100, 500, arcade.color.WHITE, 54)
+        arcade.draw_text(output, 95, 400, arcade.color.WHITE, 54)
 
     def on_draw(self):
         arcade.start_render()
