@@ -9,8 +9,9 @@ SCREEN_HEIGHT = 1000
 BOX_SPEED = 6
 SPEED = 8
 
-GAME_RUNNING = 0
-GAME_OVER = 1
+INSTRUCTIONS_PAGE = 0
+GAME_RUNNING = 1
+GAME_OVER = 2
 
 class Box(arcade.Sprite):
     def __init__(self, x, y):
@@ -50,10 +51,13 @@ class MyAppWindow(arcade.Window):
         self.moving_all_box_down = False
         self.moving_down_size = 0    
 
-        self.current_state = GAME_RUNNING
+        self.current_state = INSTRUCTIONS_PAGE
 
         self.background = arcade.load_texture("images/town.jpg")
+        self.instruction = arcade.load_texture("images/instruction.jpg")
 
+    def draw_instructions_page(self):
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.instruction)
 
     def draw_game(self):
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
@@ -77,7 +81,10 @@ class MyAppWindow(arcade.Window):
     def on_draw(self):
         arcade.start_render()
 
-        if self.current_state == GAME_RUNNING:
+        if self.current_state == INSTRUCTIONS_PAGE:
+            self.draw_instructions_page()
+            
+        elif self.current_state == GAME_RUNNING:
             self.draw_game()
 
         else:
@@ -142,11 +149,14 @@ class MyAppWindow(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.SPACE:
-            if not self.new_box is None:
-                return
-            self.new_box = Box(self.player_sprite.center_x, self.player_sprite.center_y)
-            self.new_box.change_y = -BOX_SPEED
-            self.all_sprites_list.append(self.new_box)
+            if self.current_state == GAME_RUNNING:
+                if not self.new_box is None:
+                    return
+                self.new_box = Box(self.player_sprite.center_x, self.player_sprite.center_y)
+                self.new_box.change_y = -BOX_SPEED
+                self.all_sprites_list.append(self.new_box)
+            else:
+                self.current_state = GAME_RUNNING
 
 def main():
     MyAppWindow()
